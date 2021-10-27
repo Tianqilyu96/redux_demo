@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+//引入redux store
 import store from '../../redux/store';
+//引入action creator
+import { createIncrement, createDecrement } from '../../redux/count_creator';
 
 export default class Count extends Component {
 
@@ -16,25 +19,25 @@ export default class Count extends Component {
         const {value} = this.selectedNum;
         //通知redux 加value
         //注意redux状态更新不像setState，不会让react重新render
-        store.dispatch({type:'increment',data:value*1})
+        store.dispatch(createIncrement(value*1))
     } 
     
     decrementNum =()=>{
         const {value} = this.selectedNum;
-        store.dispatch({type:'decrement',data:value*1})
+        store.dispatch(createDecrement(value*1))
     }  
 
     oddIncrement =()=>{
         const {value} = this.selectedNum;
         const sum = store.getState();
         if(sum%2 !== 0){
-            store.dispatch({type:'increment',data:value*1})
+            store.dispatch(createIncrement(value*1))
         }
     }  
 
     incrementAsync =()=>{
         const {value} = this.selectedNum;
-        setTimeout(()=>store.dispatch({type:'increment',data:value*1}),500)
+        setTimeout(()=>store.dispatch(createIncrement(value*1)),500)
     }  
 
     render() {
