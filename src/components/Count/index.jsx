@@ -4,13 +4,13 @@ import store from '../../redux/store';
 export default class Count extends Component {
 
     //在挂载之后再检测
-    componentDidMount(){
-        //检测redux状态变化，只要变化就调用render
-        //只要redux里任何状态改变 都会调用suscribe
-        store.subscribe(()=>{
-            this.setState({});
-        })
-    }
+    // componentDidMount(){
+    //     //检测redux状态变化，只要变化就调用render
+    //     //只要redux里任何状态改变 都会调用suscribe
+    //     store.subscribe(()=>{
+    //         this.setState({});
+    //     })
+    // }
 
     incrementNum =()=>{
         const {value} = this.selectedNum;
