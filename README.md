@@ -85,3 +85,7 @@
 ## 8.求和案例_react-redux最终版
 			(1).所有变量名字要规范，尽量触发对象的简写形式。
 			(2).reducers文件夹中，编写index.js专门用于汇总并暴露所有的reducer
+
+## 9.打包项目
+			(1).使用react-script build命令，生成build静态文件
+			(2).将静态文件上传到服务器
