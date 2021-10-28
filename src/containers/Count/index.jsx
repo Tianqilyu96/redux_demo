@@ -11,27 +11,37 @@ import {
   createIncrementAsync,
 } from "../../redux/count_creator";
 
-//将state作为return，作为props传递给UI component,必须是key-value对象，value是state
-//react-redux调用function时会接收state参数
-function mapStateToProps(state) {
-  return { count: state };
-}
+//将state传递给UI component
+// const mapStateToProps = (state) => {
+//   return { count: state };
+// };
 
-//将actions传递给UI, 必须是key-value对象,value是action
-//react-redux调用function时会接收dispatch
-function mapDispatchToProps(dispatch) {
-  return {
-    increment: (number) => {
-      dispatch(createIncrement(number));
-    },
-    decrement: (number) => {
-      dispatch(createDecrement(number));
-    },
-    incrementasync: (number,time) => {
-      dispatch(createIncrementAsync(number,time));
-    },
-  };
-}
+//将actions传递给UI
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     increment: (number) => dispatch(createIncrement(number)),
+//     decrement: (number) => dispatch(createDecrement(number)),
+//     incrementasync: (number, time) =>
+//       dispatch(createIncrementAsync(number, time)),
+//   };
+// };
 
 //使用connect创建并export一个container component
-export default connect(mapStateToProps, mapDispatchToProps)(CountUI);
+export default connect(
+  (state) => ({ count: state }),
+//mapDispatchToProps一般写法
+//   (dispatch) => ({
+//     increment: (number) => dispatch(createIncrement(number)),
+//     decrement: (number) => dispatch(createDecrement(number)),
+//     incrementasync: (number, time) =>
+//       dispatch(createIncrementAsync(number, time)),
+//   })
+
+//精简写法 react-redux会自动dispatch
+{
+    increment: createIncrement,
+    decrement: createDecrement,
+    incrementasync: createIncrementAsync,
+}
+
+)(CountUI);
