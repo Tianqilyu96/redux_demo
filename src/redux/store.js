@@ -4,10 +4,18 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 //引入reduer
 import countReducer from "./reducers/count";
 import personReducer from "./reducers/person";
-//引入thunk中间件 让redux识别function action
+//引入thunk中间件 让redux识别function action 异步action需要
 import thunk from "redux-thunk";
+//
+import { composeWithDevTools } from "redux-devtools-extension";
 
 //合并reducers, 命名states
-const allReducer = combineReducers({count:countReducer,person:personReducer})
+const allReducer = combineReducers({
+  count: countReducer,
+  person: personReducer,
+});
 // create Store Object
-export default createStore(allReducer, applyMiddleware(thunk));
+export default createStore(
+  allReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
