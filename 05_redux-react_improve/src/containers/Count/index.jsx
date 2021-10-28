@@ -7,7 +7,7 @@ import {
   createIncrement,
   createDecrement,
   createIncrementAsync,
-} from "../../redux/actions/count";
+} from "../../redux/count_creator";
 
 class CountUI extends Component {
   //在挂载之后再检测
@@ -46,7 +46,6 @@ class CountUI extends Component {
       <div>
         {/* getstate会调用reducer */}
         <h2>Result is : {this.props.count}</h2>
-        <h2>List length is: {this.props.length}</h2>
         <select ref={(c) => (this.selectedNum = c)}>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -80,7 +79,7 @@ class CountUI extends Component {
 
 //使用connect创建并export一个container component
 export default connect(
-  (state) => ({ count: state.count, length: state.person.length }),
+  (state) => ({ count: state }),
 //mapDispatchToProps一般写法
 //   (dispatch) => ({
 //     increment: (number) => dispatch(createIncrement(number)),
