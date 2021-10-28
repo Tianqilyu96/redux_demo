@@ -7,7 +7,7 @@ import personReducer from "./reducers/person";
 //引入thunk中间件 让redux识别function action
 import thunk from "redux-thunk";
 
-//合并reducers, 命名states
+//合并reducers
 const allReducer = combineReducers({count:countReducer,person:personReducer})
 // create Store Object
 export default createStore(allReducer, applyMiddleware(thunk));

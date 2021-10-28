@@ -3,7 +3,6 @@ import { nanoid } from "nanoid";
 import { connect } from "react-redux";
 import { createAddPerson } from "../../redux/actions/person";
 
-
 class Person extends Component {
   addPerson = () => {
     const name = this.nameInput.value;
