@@ -4,9 +4,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 //引入action-creator
 import {
-  createIncrement,
-  createDecrement,
-  createIncrementAsync,
+  increment,
+  decrement,
+  incrementAsync,
 } from "../../redux/actions/count";
 
 class CountUI extends Component {
@@ -38,7 +38,7 @@ class CountUI extends Component {
 
   incrementAsync = () => {
     const { value } = this.selectedNum;
-    this.props.incrementasync(value * 1, 1000);
+    this.props.incrementAsync(value * 1, 1000);
   };
 
   render() {
@@ -91,9 +91,9 @@ export default connect(
 
 //精简写法 react-redux会自动dispatch
 {
-    increment: createIncrement,
-    decrement: createDecrement,
-    incrementasync: createIncrementAsync,
+    increment,
+    decrement,
+    incrementAsync,
 }
 
 )(CountUI);
