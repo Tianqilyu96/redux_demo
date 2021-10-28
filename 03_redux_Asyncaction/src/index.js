@@ -10,7 +10,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-//subscribe写在最外边，每次更新都会render
+//可以把subscribe写在最外边，每次更新都会render
 store.subscribe(()=>{ReactDOM.render(
   <React.StrictMode>
     <App />

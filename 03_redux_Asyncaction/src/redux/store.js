@@ -3,7 +3,7 @@
 import { createStore,applyMiddleware } from "redux";
 //引入reduer
 import countReducer from "./count_reducer"
-//引入thunk中间件 让redux识别function action
+//引入thunk中间件
 import thunk from "redux-thunk"
 
 // create Store Object

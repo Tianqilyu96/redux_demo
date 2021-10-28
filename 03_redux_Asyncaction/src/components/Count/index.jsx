@@ -1,4 +1,12 @@
 import React, { Component } from "react";
+//引入redux store
+import store from "../../redux/store";
+//引入action creator
+import {
+  createIncrement,
+  createDecrement,
+  createIncrementAsync,
+} from "../../redux/count_creator";
 
 export default class Count extends Component {
   //在挂载之后再检测
@@ -12,31 +20,34 @@ export default class Count extends Component {
 
   incrementNum = () => {
     const { value } = this.selectedNum;
-    this.props.increment(value * 1);
+    //通知redux 加value
+    //注意redux状态更新不像setState，不会让react重新render
+    store.dispatch(createIncrement(value * 1));
   };
 
   decrementNum = () => {
     const { value } = this.selectedNum;
-    this.props.decrement(value * 1);
+    store.dispatch(createDecrement(value * 1));
   };
 
   oddIncrement = () => {
     const { value } = this.selectedNum;
-    if (this.props.count % 2 !== 0) {
-      this.props.increment(value * 1);
+    const sum = store.getState();
+    if (sum % 2 !== 0) {
+      store.dispatch(createIncrement(value * 1));
     }
   };
 
   incrementAsync = () => {
     const { value } = this.selectedNum;
-    this.props.incrementasync(value * 1, 1000);
+    store.dispatch(createIncrementAsync(value * 1, 500));
   };
 
   render() {
     return (
       <div>
         {/* getstate会调用reducer */}
-        <h2>Result is : {this.props.count}</h2>
+        <h2>Result is : {store.getState()}</h2>
         <select ref={(c) => (this.selectedNum = c)}>
           <option value="1">1</option>
           <option value="2">2</option>
